@@ -1,10 +1,10 @@
-package bootcamp.microservices.clients.app;
+package bootcamp.microservicios.semanauno.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MicroserviceClientsApplicationTests {
+class MicroserviciosGatewayApplicationTests {
 
 	@Test
 	void contextLoads() {
