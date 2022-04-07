@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -25,10 +28,12 @@ public class Client implements Serializable {
 	
 	private String idTypeClient;
 	
+	@JsonFormat(pattern = "dd-MM-yyyy")	
 	private Date createDate;
 	
 	private String createUser;
 	
+	@JsonFormat(pattern = "dd-MM-yyyy")	
 	private Date modifyDate;
 	
 	private String modifyUser;
