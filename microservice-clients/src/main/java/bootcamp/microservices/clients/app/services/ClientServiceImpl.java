@@ -40,11 +40,8 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public Mono<Client> save(Client client) {
-		return clientRepository.findByDocumentNumber(client.getDocumentNumber()).flatMap(c->{
-			c.setCreateUser("LULIO");
-			c.setCreateDate(new Date());
-			return clientRepository.save(c);
-		}).switchIfEmpty(clientRepository.save(client));
+		return clientRepository.findByDocumentNumber(client.getDocumentNumber())
+				.switchIfEmpty(clientRepository.save(client));
 	}
 
 	@Override

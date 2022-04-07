@@ -12,36 +12,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import bootcamp.microservices.clients.app.documents.Client;
+import bootcamp.microservices.clients.app.documents.Company;
 import bootcamp.microservices.clients.app.exceptions.customs.CustomNotFoundException;
-import bootcamp.microservices.clients.app.services.ClientService;
+import bootcamp.microservices.clients.app.services.CompanyService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-public class ClientController {
+public class CompanyController {
 
 	@Autowired
-	private ClientService service;
+	private CompanyService service;
 
 
 	@PostMapping
-	public Mono<Client> createClient(@Valid @RequestBody Client client) {
-		return service.save(client);
+	public Mono<Company> createClient(@Valid @RequestBody Company company) {
+		return service.save(company);
 	}
 
 	@GetMapping("/all")
-	public Flux<Client> searchAll() {
+	public Flux<Company> searchAll() {
 		return service.findAll();
 	}
 
 	@GetMapping("/id/{id}")
-	public Mono<Client> searchById(@PathVariable String id) {
+	public Mono<Company> searchById(@PathVariable String id) {
 		return service.findById(id);
 	}
 	
 	@GetMapping("/documentNumber/{documentNumber}")
-	public Mono<Client> searchByDocument(@PathVariable String documentNumber) {
+	public Mono<Company> searchByDocument(@PathVariable String documentNumber) {
 		return service.findByDocumentNumber(documentNumber);
 	}
 

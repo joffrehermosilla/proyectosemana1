@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Document
-public class Client implements Serializable {
+public class Company implements Serializable {
 	
 	private static final long serialVersionUID = -1116153273782136818L;
 
@@ -20,17 +20,11 @@ public class Client implements Serializable {
 	
 	private String documentNumber;
 	
-	private String name;
-	
-	private String lastName;
-	
-	private Integer age;
-	
+	private String companyName;
+		
 	private Integer address;
 	
 	private String phoneNumber;
-	
-	private String mobilePhone;
 		
 	@JsonFormat(pattern = "dd-MM-yyyy")	
 	private Date createDate;
