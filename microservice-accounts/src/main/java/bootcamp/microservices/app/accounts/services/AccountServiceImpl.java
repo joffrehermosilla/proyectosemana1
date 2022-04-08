@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import bootcamp.microservices.app.accounts.documents.Account;
 import bootcamp.microservices.app.accounts.exceptions.customs.CustomNotFoundException;
 import bootcamp.microservices.app.accounts.repository.AccountRepository;
+import bootcamp.microservices.app.accounts.utils.Validation;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -16,6 +18,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private AccountRepository accountRepository;
+	
+	@Autowired
+	private Validation validation;
 
 	@Override
 	public Flux<Account> findAll() {
@@ -39,8 +44,12 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Mono<Account> save(Account account) {
-		return accountRepository.save(account)
-				.switchIfEmpty(accountRepository.save(account));
+		Boolean authorize = validation.createAccountValidation(account.getIdClient());
+		if(authorize==true) {
+			return accountRepository.save(account);
+		}else {
+			return Mono.error(new CustomNotFoundException("Client can't have more than one account"));
+		}
 	}
 
 	@Override
@@ -60,9 +69,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Flux<Account> findByIdClient(String idClient) {
-		return accountRepository.findByIdClient(idClient)
-				.switchIfEmpty(Mono.error(new CustomNotFoundException("Account not found")));
+	public Mono<Long> findByIdClient(String idClient) {
+		return accountRepository.findByIdClient(idClient).count();
 	}
 
 }

@@ -1,26 +1,22 @@
 package bootcamp.microservices.app.accounts.utils;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import bootcamp.microservices.app.accounts.documents.Account;
 import bootcamp.microservices.app.accounts.services.AccountService;
 
+@Component
 public class Validation {
 
 	@Autowired
 	private AccountService service;
 
 	public Boolean createAccountValidation(String idClient) {
-		Boolean create = false;
-		List<Account> lista = service.findByIdClient(idClient).collectList().block();
-		if (lista.size() == 0) {
-			create = true;
-		} else {
-			create = false;
+		Boolean createAccount = false;
+		Long accountQuaty = service.findByIdClient(idClient).block();
+		if (accountQuaty == 0) {
+			createAccount = true;
 		}
-		return create;
+		return createAccount;
 	}
-
 }

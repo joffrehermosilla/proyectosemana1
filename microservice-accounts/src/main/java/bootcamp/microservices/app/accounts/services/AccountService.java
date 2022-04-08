@@ -18,5 +18,5 @@ public interface AccountService {
 
 	public Mono<Account> deleteLogic(Account account);
 
-	public Flux<Account> findByIdClient(String idClient);
+	public Mono<Long> findByIdClient(String idClient);
 }
