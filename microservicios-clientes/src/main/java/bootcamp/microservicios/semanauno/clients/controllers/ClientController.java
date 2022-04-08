@@ -1,10 +1,6 @@
 package bootcamp.microservicios.semanauno.clients.controllers;
 
-import java.net.URI;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -12,20 +8,16 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import bootcamp.microservicios.semanauno.clients.service.ClientService;
 import bootcamp.microservicios.semanauno.commons.account.documents.Account;
 import bootcamp.microservicios.semanauno.commons.clients.documents.Client;
-import lombok.extern.slf4j.XSlf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

@@ -19,14 +19,12 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public Flux<Client> findAll() {
-		return clientRepository.findAll()
-				.switchIfEmpty(Mono.error(new CustomNotFoundException("Clients not exist")));
+		return clientRepository.findAll().switchIfEmpty(Mono.error(new CustomNotFoundException("Clients not exist")));
 	}
 
 	@Override
 	public Mono<Client> findById(String id) {
-		return clientRepository.findById(id)
-				.switchIfEmpty(Mono.error(new CustomNotFoundException("Client not found")));
+		return clientRepository.findById(id).switchIfEmpty(Mono.error(new CustomNotFoundException("Client not found")));
 	}
 
 	@Override

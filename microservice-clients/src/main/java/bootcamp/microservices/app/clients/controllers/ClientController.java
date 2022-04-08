@@ -3,9 +3,6 @@ package bootcamp.microservices.app.clients.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import bootcamp.microservices.app.clients.documents.Client;
-import bootcamp.microservices.app.clients.exceptions.customs.CustomNotFoundException;
 import bootcamp.microservices.app.clients.services.ClientService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
