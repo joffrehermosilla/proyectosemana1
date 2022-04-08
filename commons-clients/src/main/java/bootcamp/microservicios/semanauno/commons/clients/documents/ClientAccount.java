@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
+
+
 @Data
 @Document(collection = "cliente_cuenta")
 public class ClientAccount {

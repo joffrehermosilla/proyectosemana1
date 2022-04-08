@@ -15,7 +15,7 @@ public interface ClientService {
 
 	public Mono<Void> delete(Client client);
 
-	public Iterable<Client> saveAll(Iterable<Client> clients);
+//	public Iterable<Client> saveAll(Iterable<Client> clients);
 
 
 

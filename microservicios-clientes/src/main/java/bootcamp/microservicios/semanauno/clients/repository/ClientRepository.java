@@ -7,5 +7,5 @@ import reactor.core.publisher.Flux;
 
 public interface ClientRepository extends ReactiveMongoRepository<Client, String> {
 
-	public Flux<Client> findAccountByClient(Long cuentaId);
+
 }

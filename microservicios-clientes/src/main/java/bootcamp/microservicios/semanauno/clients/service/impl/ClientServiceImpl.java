@@ -41,11 +41,6 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Iterable<Client> saveAll(Iterable<Client> clients) {
 
-		return (Iterable<Client>) clientRepository.saveAll(clients);
-	}
 
 }
