@@ -35,5 +35,15 @@ public class Company implements Serializable {
 	private Date modifyDate;
 	
 	private String modifyUser;
+
+	public String getDocumentNumber() {
+		return documentNumber;
+	}
+
+	public void setDocumentNumber(String documentNumber) {
+		this.documentNumber = documentNumber;
+	}
 		
+	
+	
 }

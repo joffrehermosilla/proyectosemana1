@@ -72,7 +72,6 @@ public class ClientController {
 	 * }
 	 */
 
-
 	@GetMapping("/listar")
 	public ResponseEntity<?> listar() {
 
@@ -91,13 +90,18 @@ public class ClientController {
 	@GetMapping("/all")
 	public Flux<Client> searchAll() {
 		Flux<Client> cli = clientService.findAll();
-		
+
 		return cli;
 	}
 
 	@GetMapping("/id/{id}")
 	public Mono<Client> searchById(@PathVariable String id) {
 		return clientService.findById(id);
+	}
+
+	@PostMapping
+	public Mono<Client> createClient(@Valid @RequestBody Client client) {
+		return clientService.save(client);
 	}
 
 }
