@@ -22,7 +22,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-
 public class ClientController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
