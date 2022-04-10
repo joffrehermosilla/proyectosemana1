@@ -6,9 +6,7 @@ import bootcamp.microservices.app.accounts.documents.Account;
 import reactor.core.publisher.Flux;
 
 public interface AccountRepository extends ReactiveMongoRepository<Account, String> {
-	
-	public Flux<Account> findByClient();
-	
+		
 	public Flux<Account> findByIdClient(String idClient);
 
 }
