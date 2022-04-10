@@ -12,7 +12,7 @@ import lombok.Data;
 public class Credits {
 
 	@Id
-	private String Id;
+	private String id;
 
 	/*
 	 * creditname el nombre del tipo credito: Personal, Empresarial y Tarjeta de
@@ -39,57 +39,54 @@ public class Credits {
 	@NotEmpty
 	private Long authorizedsigner;
 
-	private Credits(CredittBuilder builder) {
-		this.Id = builder.Id;
+	private Credits(CreditBuilder builder) {
+		this.id = builder.Id;
 		this.creditname = builder.creditname;
 		this.creditaccountcounter = builder.creditaccountcounter;
 		this.authorizedsigner = builder.authorizedsigner;
 	}
 
-	public static class CredittBuilder {
+	public static class CreditBuilder {
 
 		private String Id;
 		private String creditname;
 		private Long creditaccountcounter;
 		private Long authorizedsigner;
 
-		public CredittBuilder(String creditname, Long creditaccountcounter, Long authorizedsigner) {
+		public CreditBuilder(String creditname, Long creditaccountcounter, Long authorizedsigner) {
 			this.creditname = creditname;
 			this.creditaccountcounter = creditaccountcounter;
 			this.authorizedsigner = authorizedsigner;
 		}
 
-		public CredittBuilder creditname(String creditname) {
+		public CreditBuilder creditname(String creditname) {
 			this.creditname = creditname;
 			return this;
 		}
 
-		public CredittBuilder creditaccountcounter(Long creditaccountcounter) {
+		public CreditBuilder creditaccountcounter(Long creditaccountcounter) {
 			this.creditaccountcounter = creditaccountcounter;
 			return this;
 		}
 
-		public CredittBuilder authorizedsigner(Long authorizedsigner) {
+		public CreditBuilder authorizedsigner(Long authorizedsigner) {
 			this.authorizedsigner = authorizedsigner;
 			return this;
 		}
 
 	}
 
+<<<<<<< Updated upstream
+=======
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public void setCreditname(String creditname) {
 		this.creditname = creditname;
 	}
+>>>>>>> Stashed changes
 
-	public void setCreditaccountcounter(Long creditaccountcounter) {
-		this.creditaccountcounter = creditaccountcounter;
-	}
 
-	public void setAuthorizedsigner(Long authorizedsigner) {
-		this.authorizedsigner = authorizedsigner;
-	}
-
+	
 }
