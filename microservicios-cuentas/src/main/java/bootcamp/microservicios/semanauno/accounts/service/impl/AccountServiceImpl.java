@@ -1,13 +1,14 @@
 package bootcamp.microservicios.semanauno.accounts.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import bootcamp.microservicios.semanauno.accounts.repository.AccountRepository;
 import bootcamp.microservicios.semanauno.accounts.service.AccountService;
 import bootcamp.microservicios.semanauno.commons.account.documents.Account;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
+@Service
 public class AccountServiceImpl implements AccountService {
 
 	@Autowired

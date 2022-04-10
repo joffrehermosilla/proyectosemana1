@@ -21,23 +21,8 @@ public class Account {
 	 * 
 	 */
 
-
 	@NotEmpty
 	private String accountname;
-	/*
-	 * comisionmantenimiento el enunciado indica una comision por las cuentas segun
-	 * cliente
-	 * 
-	 */
-	@NotEmpty
-	private Double comisionmantenimiento;
-	/*
-	 * limitemaxmovimientos el enunciado indica una limite maximo de movimientos
-	 * mensual segun cliente
-	 * 
-	 */
-	private Long limitemaxmovimientos;
-
 
 	/*
 	 * maintenancefee comision de mantenimiento segun el enunciado del proyecto
@@ -55,8 +40,6 @@ public class Account {
 	@NotEmpty
 	private Long monthlymovement;
 
-
-
 	private Account(AccountBuilder builder) {
 
 		this.id = builder.id;
@@ -65,12 +48,9 @@ public class Account {
 		this.monthlymovement = builder.monthlymovement;
 	}
 
-
-
 	public Account() {
 
 	}
-
 
 	public static class AccountBuilder {
 
@@ -85,18 +65,11 @@ public class Account {
 			this.maintenancefee = maintenancefee;
 			this.monthlymovement = monthlymovement;
 		}
-		
-
-
-
-
-
 
 		public AccountBuilder accountname(String accountname) {
 			this.accountname = accountname;
 			return this;
 		}
-
 
 		public AccountBuilder maintenancefee(Double maintenancefee) {
 			this.maintenancefee = maintenancefee;
@@ -107,11 +80,7 @@ public class Account {
 			this.monthlymovement = monthlymovement;
 			return this;
 		}
-		
-		
 
 	}
-
-
 
 }

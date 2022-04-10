@@ -1,18 +1,16 @@
 package bootcamp.microservicios.semanauno.accounts.controllers;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import bootcamp.microservicios.semanauno.accounts.service.AccountService;
 
@@ -21,6 +19,7 @@ import bootcamp.microservicios.semanauno.commons.account.documents.Account;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@RestController
 public class AccountController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);
 	@Autowired
@@ -38,14 +37,14 @@ public class AccountController {
 	 * return ResponseEntity.ok().body(clientes); }
 	 */
 
-	@GetMapping("/all")
+	@GetMapping("/pasivo-all")
 	public Flux<Account> searchAll() {
 		Flux<Account> cli = accountService.findAll();
 		LOGGER.info("Cuentas Pasivas: " + cli);
 		return cli;
 	}
 
-	@GetMapping("/id/{id}")
+	@GetMapping("/pasivo/id/{id}")
 	public Mono<Account> searchById(@PathVariable String id) {
 
 		LOGGER.info("Cuenta Pasiva id: " + accountService.findById(id) + " con codigo: " + id);
