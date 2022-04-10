@@ -9,7 +9,7 @@ public interface CreditService {
 
 	public Mono<Credits> findById(String id);
 
-	public Mono<Credits> save(Credits account);
+	public Mono<Credits> save(Credits credit);
 
-	public Mono<Void> delete(Credits account);
+	public Mono<Void> delete(Credits credit);
 }

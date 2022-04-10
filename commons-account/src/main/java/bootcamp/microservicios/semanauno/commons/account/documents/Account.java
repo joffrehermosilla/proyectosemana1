@@ -1,6 +1,8 @@
 package bootcamp.microservicios.semanauno.commons.account.documents;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,7 +23,8 @@ public class Account {
 	 * 
 	 */
 
-	@NotEmpty
+	@Size(max = 20, min = 3, message = "{accountname.message.invalid}")
+	@NotEmpty(message = "Please enter accountname Ahorro, Cuenta corriente or Plazo fijo")
 	private String accountname;
 
 	/*
@@ -29,7 +32,8 @@ public class Account {
 	 * 
 	 * 
 	 */
-	@NotEmpty
+
+	@NotNull(message = " comision de mantenimiento segun el enunciado del proyecto no null")
 	private Double maintenancefee;
 	/*
 	 * monthlymovement limite de movimientos mensuales segun el enunciado del
@@ -37,7 +41,8 @@ public class Account {
 	 * 
 	 * 
 	 */
-	@NotEmpty
+
+	@NotNull(message = " comision de mantenimiento segun el enunciado del proyecto no null")
 	private Long monthlymovement;
 
 	private Account(AccountBuilder builder) {

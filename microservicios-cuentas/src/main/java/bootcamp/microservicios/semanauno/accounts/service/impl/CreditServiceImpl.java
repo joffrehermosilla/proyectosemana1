@@ -28,15 +28,15 @@ public class CreditServiceImpl implements CreditService {
 	}
 
 	@Override
-	public Mono<Credits> save(Credits account) {
+	public Mono<Credits> save(Credits credit) {
 
-		return creditRepository.save(account);
+		return creditRepository.save(credit);
 	}
 
 	@Override
-	public Mono<Void> delete(Credits account) {
+	public Mono<Void> delete(Credits credit) {
 
-		return creditRepository.delete(account);
+		return creditRepository.delete(credit);
 	}
 
 }

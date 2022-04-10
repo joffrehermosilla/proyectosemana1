@@ -2,7 +2,11 @@ package bootcamp.microservicios.semanauno.commons.account.documents;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/*import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;*/
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import lombok.Data;
@@ -18,7 +22,8 @@ public class Credits {
 	 * creditname el nombre del tipo credito: Personal, Empresarial y Tarjeta de
 	 * Credito
 	 */
-	@NotEmpty
+	@Size(max = 20, min = 3, message = "{creditname.message.invalid}")
+	@NotEmpty(message = "Please enter accountname Ahorro, Cuenta corriente or Plazo fijo")
 	private String creditname;
 
 	/*
@@ -27,7 +32,8 @@ public class Credits {
 	 * 
 	 * 
 	 */
-	@NotEmpty
+
+	@NotNull(message = " creditaccountcountero segun el enunciado del proyecto no null")
 	private Long creditaccountcounter;
 
 	/*
@@ -36,14 +42,22 @@ public class Credits {
 	 * 
 	 * 
 	 */
-	@NotEmpty
+
+	@NotNull(message = "Please authorizedsigner")
 	private Long authorizedsigner;
+	
+	
+	
 
 	private Credits(CreditBuilder builder) {
 		this.id = builder.Id;
 		this.creditname = builder.creditname;
 		this.creditaccountcounter = builder.creditaccountcounter;
 		this.authorizedsigner = builder.authorizedsigner;
+	}
+
+	public Credits() {
+	
 	}
 
 	public static class CreditBuilder {
@@ -75,8 +89,5 @@ public class Credits {
 		}
 
 	}
-	
-	
-	
 
 }
