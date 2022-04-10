@@ -31,5 +31,4 @@ public class Account {
 	private Date modifyDate;
 
 	private String modifyUser;
-
 }
