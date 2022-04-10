@@ -75,23 +75,27 @@ public class ClientController {
 			return c;
 		}).collect(Collectors.toList());
 
+		LOGGER.info("CLIENTES REGISTRADOS: " + clientes + " STATUS: " + ResponseEntity.ok().body(clientes));
+
 		return ResponseEntity.ok().body(clientes);
 	}
 
 	@GetMapping("/all")
 	public Flux<Client> searchAll() {
 		Flux<Client> cli = clientService.findAll();
-
+		LOGGER.info("CLIENTES REGISTRADOS: " + cli);
 		return cli;
 	}
 
 	@GetMapping("/id/{id}")
 	public Mono<Client> searchById(@PathVariable String id) {
+		LOGGER.info("CLIENTE id: " + clientService.findById(id) + " con codigo: " + id);
 		return clientService.findById(id);
 	}
 
-	@PostMapping
+	@PostMapping("/crear-cliente")
 	public Mono<Client> createClient(@Valid @RequestBody Client client) {
+		LOGGER.info("CLIENTE creado: " + clientService.save(client));
 		return clientService.save(client);
 	}
 

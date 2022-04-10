@@ -75,18 +75,8 @@ public class Credits {
 		}
 
 	}
-
-<<<<<<< Updated upstream
-=======
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public void setCreditname(String creditname) {
-		this.creditname = creditname;
-	}
->>>>>>> Stashed changes
-
-
 	
+	
+	
+
 }
