@@ -54,35 +54,35 @@ public class ClientServiceImpl implements ClientService {
 		return clientRepository.delete(client);
 	}
 
-	@SuppressWarnings("unchecked")
+	// @SuppressWarnings("unchecked")
 	@Override
 	public Flux<Client> findClientByAccount(String clienteId, String pasivosIds) {
-		//relacionamos el document Account con la interface Feign
+		// relacionamos el document Account con la interface Feign
 		Account account = clienteCuenta.obtenerClienteporCuentaPasivo(clienteId);
-		
-		LOGGER.info("account proveniente del feign"+account);
-		
+
+		LOGGER.info("account proveniente del feign" + account);
+
 		List<Client> clients = account.getPasivosporcliente();
-		
-		LOGGER.info("Lista de clientes con cuenta pasiva:"+clients);
-		
+
+		LOGGER.info("Lista de clientes con cuenta pasiva:" + clients);
+
 		List<String> clientsId = clients.stream().map(c -> c.getId()).collect(Collectors.toList());
-		
-		LOGGER.info("Colleccion de Ids de las cuentas pasivas por client:"+clientsId);
-		
-		
-		List<Client> clientesporcuenta =  (List<Client>) clientRepository.findClientByAccount(clienteId, clientsId);
-		LOGGER.info("Colleccion de clientes de las cuentas:"+clientesporcuenta);
-		//el map va a retornar un nuevo flujo con los datos cambiado para ser asignado al cliente c
-		clientesporcuenta = clientesporcuenta.stream().map(cpc ->{
-			clients.forEach(c ->{
-				if(c.getId()== cpc.getPasivoId())
+
+		LOGGER.info("Colleccion de Ids de las cuentas pasivas por client:" + clientsId);
+
+		List<Client> clientesporcuenta = (List<Client>) clientRepository.findClientByAccount(clienteId, clientsId);
+		LOGGER.info("Colleccion de clientes de las cuentas:" + clientesporcuenta);
+		// el map va a retornar un nuevo flujo con los datos cambiado para ser asignado
+		// al cliente c
+		clientesporcuenta = clientesporcuenta.stream().map(cpc -> {
+			clients.forEach(c -> {
+				if (c.getId() == cpc.getPasivoId())
 					cpc.setPasivo(c);
 			});
-			LOGGER.info("Confirmar que es cpc:"+cpc);
+			LOGGER.info("Confirmar que es cpc:" + cpc);
 			return cpc;
 		}).collect(Collectors.toList());
-		
+		LOGGER.info("mostrar :" + clientesporcuenta);
 		return (Flux<Client>) clientesporcuenta;
 	}
 
