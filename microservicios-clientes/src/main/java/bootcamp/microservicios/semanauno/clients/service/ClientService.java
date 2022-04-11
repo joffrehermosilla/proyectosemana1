@@ -18,6 +18,6 @@ public interface ClientService {
 
 //	public Iterable<Client> saveAll(Iterable<Client> clients);
 
-	 public Flux<Client> findClientByAccount(String clienteId, Iterable<String> cuentasIds);
-
+	 public Flux<Client> findClientByAccount(String clienteId, String pasivoId);
+	 public Flux<Client> findClientByCredit(String clienteId, String activoId);
 }

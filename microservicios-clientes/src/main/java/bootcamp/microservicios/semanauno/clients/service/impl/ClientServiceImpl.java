@@ -3,9 +3,12 @@ package bootcamp.microservicios.semanauno.clients.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bootcamp.microservicios.semanauno.clients.controllers.ClientController;
 import bootcamp.microservicios.semanauno.clients.document.AccountClient;
 import bootcamp.microservicios.semanauno.clients.feign.AccountFeignClient;
 import bootcamp.microservicios.semanauno.clients.repository.ClientRepository;
@@ -20,6 +23,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class ClientServiceImpl implements ClientService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClientServiceImpl.class);
 	@Autowired
 	private ClientRepository clientRepository;
 
@@ -50,27 +54,41 @@ public class ClientServiceImpl implements ClientService {
 		return clientRepository.delete(client);
 	}
 
-
-
+	@SuppressWarnings("unchecked")
 	@Override
-	public Flux<Client> findClientByAccount(String clienteId, Iterable<String> cuentasIds) {
+	public Flux<Client> findClientByAccount(String clienteId, String pasivosIds) {
 		//relacionamos el document Account con la interface Feign
 		Account account = clienteCuenta.obtenerClienteporCuentaPasivo(clienteId);
 		
+		LOGGER.info("account proveniente del feign"+account);
 		
-		List<AccountClient> client = account.getClient();
-		List<String> cuentapasivasId = client.stream().map(p -> p.getId()).collect(Collectors.toList());
+		List<Client> clients = account.getPasivosporcliente();
 		
-		List<Client> clientesporcuenta = (List<Client>) clientRepository.findClientByAccount(clienteId, cuentapasivasId);
+		LOGGER.info("Lista de clientes con cuenta pasiva:"+clients);
+		
+		List<String> clientsId = clients.stream().map(c -> c.getId()).collect(Collectors.toList());
+		
+		LOGGER.info("Colleccion de Ids de las cuentas pasivas por client:"+clientsId);
 		
 		
+		List<Client> clientesporcuenta =  (List<Client>) clientRepository.findClientByAccount(clienteId, clientsId);
+		LOGGER.info("Colleccion de clientes de las cuentas:"+clientesporcuenta);
+		//el map va a retornar un nuevo flujo con los datos cambiado para ser asignado al cliente c
 		clientesporcuenta = clientesporcuenta.stream().map(cpc ->{
-			client.forEach(c ->{
-				if(c.getId()== cpc.getId())
-					cpc.set
+			clients.forEach(c ->{
+				if(c.getId()== cpc.getPasivoId())
+					cpc.setPasivo(c);
 			});
-		})
+			LOGGER.info("Confirmar que es cpc:"+cpc);
+			return cpc;
+		}).collect(Collectors.toList());
 		
+		return (Flux<Client>) clientesporcuenta;
+	}
+
+	@Override
+	public Flux<Client> findClientByCredit(String clienteId, String activoId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

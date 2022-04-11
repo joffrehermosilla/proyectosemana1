@@ -1,5 +1,6 @@
 package bootcamp.microservicios.semanauno.commons.microservicios.document;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 
 //import bootcamp.microservicios.semanauno.commons.clients.documents.Account;
 import lombok.Data;
@@ -21,7 +21,9 @@ public class Client {
 	@Id
 	private String id;
 
-	private Long cuentaId;
+	private String pasivoId;
+
+	private String activoId;
 
 	private String texto;
 
@@ -39,34 +41,19 @@ public class Client {
 
 	@Transient
 	private Credits activo;
-	
 
 	public void prePersis() {
 		this.createAt = new Date();
 	}
 
-	public Long getCuentaId() {
-		return cuentaId;
+	public Client() {
+		this.pasivos = new ArrayList<>();
+		this.activos = new ArrayList<>();
 	}
 
-	public void setCuentaId(Long cuentaId) {
-		this.cuentaId = cuentaId;
-	}
-
-	public Date getCreateAt() {
-		return createAt;
-	}
-
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public void setPasivo(Client c) {
+		// TODO Auto-generated method stub
+		this.pasivo = c.pasivo;
 	}
 
 }

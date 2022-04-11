@@ -2,6 +2,11 @@ package bootcamp.microservicios.semanauno.commons.microservicios.document;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;*/
 import javax.validation.constraints.NotEmpty;
@@ -9,6 +14,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+
 import lombok.Data;
 
 @Data
@@ -45,9 +52,12 @@ public class Credits {
 
 	@NotNull(message = "Please authorizedsigner")
 	private Long authorizedsigner;
-	
-	
-	
+
+	@Transient
+	private Client clientporactivo;
+
+	@JsonIgnoreProperties(value = { "clientes_con_cuenta_activa" })
+	private List<Client> activosporcliente;
 
 	private Credits(CreditBuilder builder) {
 		this.id = builder.Id;
@@ -57,7 +67,7 @@ public class Credits {
 	}
 
 	public Credits() {
-	
+		this.activosporcliente = new ArrayList<>();
 	}
 
 	public static class CreditBuilder {

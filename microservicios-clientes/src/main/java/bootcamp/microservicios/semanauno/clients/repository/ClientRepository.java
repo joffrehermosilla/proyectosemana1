@@ -9,6 +9,7 @@ import bootcamp.microservicios.semanauno.commons.microservicios.document.Client;
 import reactor.core.publisher.Flux;
 
 @Repository
-public interface ClientRepository extends ReactiveMongoRepository<Client, String>,ClientService{
-	   public Flux<Client> findClientByAccount(String clienteId, Iterable<String> cuentasIds);
+public interface ClientRepository extends ReactiveMongoRepository<Client, String>{
+	  public Flux<Client> findClientByAccount(String clienteId, Iterable<String> pasivosIds);
+	  public Flux<Client> findClientByCredit(String clienteId, Iterable<String> activosIds);
 }
