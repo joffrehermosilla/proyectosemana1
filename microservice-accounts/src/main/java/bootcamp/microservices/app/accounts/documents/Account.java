@@ -1,5 +1,6 @@
 package bootcamp.microservices.app.accounts.documents;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,7 +11,9 @@ import lombok.Data;
 
 @Data
 @Document
-public class Account {
+public class Account implements Serializable {
+
+	private static final long serialVersionUID = -2192062026580323624L;
 
 	private String id;
 

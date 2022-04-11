@@ -1,4 +1,4 @@
-package bootcamp.microservices.app.clientaccounttypes.documents;
+package bootcamp.microservices.app.companyaccounts.documents;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,9 +11,9 @@ import lombok.Data;
 
 @Data
 @Document
-public class ClientAccountType implements Serializable {
+public class CompanyAccountType implements Serializable {
 
-	private static final long serialVersionUID = 7140924174384966341L;
+	private static final long serialVersionUID = 1L;
 
 	private String id;
 

@@ -2,7 +2,7 @@ package bootcamp.microservicios.semanauno.accounts.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 
-@FeignClient(name = "microservicio-clientes")
+@FeignClient(name = "microservice-company-account-types")
 public interface ClientFeignAccount {
 
 }

@@ -51,7 +51,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public Mono<Client> deleteLogic(Client client) {
-		return clientRepository.findById(client.getId()).flatMap(c -> {
+		return clientRepository.findByDocumentNumber(client.getDocumentNumber()).flatMap(c -> {
 			c.setModifyUser(client.getModifyUser());
 			c.setModifyDate(new Date());
 			return clientRepository.save(c);

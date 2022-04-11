@@ -20,6 +20,10 @@ public class Company implements Serializable {
 	private String documentNumber;
 
 	private String companyName;
+	
+	private String generalManager;
+	
+	private String emailGeneralManager;
 
 	private Integer address;
 

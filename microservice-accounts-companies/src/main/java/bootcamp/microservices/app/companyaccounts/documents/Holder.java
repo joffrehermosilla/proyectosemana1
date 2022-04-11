@@ -1,4 +1,4 @@
-package bootcamp.microservices.app.clientaccounttypes.documents;
+package bootcamp.microservices.app.companyaccounts.documents;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,21 +11,25 @@ import lombok.Data;
 
 @Data
 @Document
-public class ClientAccountType implements Serializable {
+public class Holder implements Serializable {
 
-	private static final long serialVersionUID = 7140924174384966341L;
+	private static final long serialVersionUID = -747313791234289185L;
 
 	private String id;
 
-	private String completeName;
+	private String documentNumber;
 
-	private String shortName;
+	private String name;
 
-	private Double mainteanceCost;
+	private String lastName;
 
-	private Integer operationsNumber;
+	private Integer age;
 
-	private Date operationDate;
+	private Integer address;
+
+	private String phoneNumber;
+
+	private String mobilePhone;
 
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date createDate;
@@ -36,7 +40,5 @@ public class ClientAccountType implements Serializable {
 	private Date modifyDate;
 
 	private String modifyUser;
-
-	private Integer status;
 
 }
