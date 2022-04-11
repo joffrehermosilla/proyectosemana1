@@ -4,7 +4,9 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
 import org.springframework.stereotype.Repository;
 
-import bootcamp.microservicios.semanauno.commons.account.documents.Account;
+import bootcamp.microservicios.semanauno.commons.microservicios.document.Account;
+
+//import bootcamp.microservicios.semanauno.commons.account.documents.Account;
 
 
 

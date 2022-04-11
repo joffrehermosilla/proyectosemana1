@@ -1,4 +1,4 @@
-package bootcamp.microservicios.semanauno.commons.account.documents;
+package bootcamp.microservicios.semanauno.commons.microservicios.document;
 
 
 import javax.validation.constraints.NotEmpty;

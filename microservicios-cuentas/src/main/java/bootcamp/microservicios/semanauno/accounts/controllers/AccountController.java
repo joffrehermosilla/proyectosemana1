@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import bootcamp.microservicios.semanauno.accounts.service.AccountService;
+import bootcamp.microservicios.semanauno.commons.microservicios.document.Account;
 
-import bootcamp.microservicios.semanauno.commons.account.documents.Account;
+//import bootcamp.microservicios.semanauno.commons.account.documents.Account;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

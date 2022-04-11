@@ -1,7 +1,8 @@
 package bootcamp.microservicios.semanauno.clients.service;
 
 
-import bootcamp.microservicios.semanauno.commons.clients.documents.Client;
+import bootcamp.microservicios.semanauno.commons.microservicios.document.Client;
+//import bootcamp.microservicios.semanauno.commons.clients.documents.Client;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -17,6 +18,6 @@ public interface ClientService {
 
 //	public Iterable<Client> saveAll(Iterable<Client> clients);
 
-
+	 public Flux<Client> findClientByAccount(String clienteId, Iterable<String> cuentasIds);
 
 }

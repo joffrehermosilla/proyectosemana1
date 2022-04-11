@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import bootcamp.microservicios.semanauno.clients.service.ClientService;
-import bootcamp.microservicios.semanauno.commons.account.documents.Account;
-import bootcamp.microservicios.semanauno.commons.clients.documents.Client;
+import bootcamp.microservicios.semanauno.commons.microservicios.document.Client;
+//import bootcamp.microservicios.semanauno.commons.account.documents.Account;
+//import bootcamp.microservicios.semanauno.commons.clients.documents.Client;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -63,22 +64,19 @@ public class ClientController {
 	 * }
 	 */
 
-	@GetMapping("/listar")
-	public ResponseEntity<?> listar() {
-
-		List<Client> clientes = (clientService.findAll()).toStream().map(c -> {
-			c.getClientAccount().forEach(ca -> {
-				Account cuenta = new Account();
-				cuenta.setId(ca.getClientId());
-				c.addAccounts(cuenta);
-			});
-			return c;
-		}).collect(Collectors.toList());
-
-		LOGGER.info("CLIENTES REGISTRADOS: " + clientes + " STATUS: " + ResponseEntity.ok().body(clientes));
-
-		return ResponseEntity.ok().body(clientes);
-	}
+	/*
+	 * @GetMapping("/listar") public ResponseEntity<?> listar() {
+	 * 
+	 * List<Client> clientes = (clientService.findAll()).toStream().map(c -> {
+	 * c.getClientAccount().forEach(ca -> { Account cuenta = new Account();
+	 * cuenta.setId(ca.getClientId()); c.addAccounts(cuenta); }); return c;
+	 * }).collect(Collectors.toList());
+	 * 
+	 * LOGGER.info("CLIENTES REGISTRADOS: " + clientes + " STATUS: " +
+	 * ResponseEntity.ok().body(clientes));
+	 * 
+	 * return ResponseEntity.ok().body(clientes); }
+	 */
 
 	@GetMapping("/all")
 	public Flux<Client> searchAll() {

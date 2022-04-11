@@ -1,4 +1,4 @@
-package bootcamp.microservicios.semanauno.commons.clients.documents;
+package bootcamp.microservicios.semanauno.commons.microservicios.document;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +10,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
+//import bootcamp.microservicios.semanauno.commons.clients.documents.Account;
 import lombok.Data;
 
 @Data
@@ -25,10 +27,20 @@ public class Client {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createAt;
+
+	@JsonIgnoreProperties(value = { "cuentas_pasivas_cliente" })
+	private List<Account> pasivos;
+
+	@JsonIgnoreProperties(value = { "cuentas_activas_cliente" })
+	private List<Credits> activos;
+
+	@Transient
+	private Account pasivo;
+
+	@Transient
+	private Credits activo;
 	
-	
-	
-	
+
 	public void prePersis() {
 		this.createAt = new Date();
 	}
