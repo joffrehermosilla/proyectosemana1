@@ -2,7 +2,6 @@ package bootcamp.microservices.app.companyaccounts.documents;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,23 +11,27 @@ import lombok.Data;
 
 @Data
 @Document
-public class CompanyAccount implements Serializable {
+public class Signatory implements Serializable {
 
-	private static final long serialVersionUID = -2539345833558909018L;
+	private static final long serialVersionUID = -1518847114715450167L;
 
 	private String id;
 
-	private String accountNumber;
+	private String documentNumber;
 
-	private String idAccountType;
+	private String name;
 
-	private String idCompany;
+	private String lastName;
 
-	private Double amount;
-	
-	private List<Holder> listOfHolders;
+	private Integer age;
 
-	private List<Signatory> listOfSignatories;
+	private Integer address;
+
+	private String phoneNumber;
+
+	private String mobilePhone;
+
+	private String idCuenta;
 
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date createDate;

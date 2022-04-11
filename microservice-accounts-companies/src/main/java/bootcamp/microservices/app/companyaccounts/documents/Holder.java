@@ -30,6 +30,8 @@ public class Holder implements Serializable {
 	private String phoneNumber;
 
 	private String mobilePhone;
+	
+	private String idCuenta;
 
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date createDate;

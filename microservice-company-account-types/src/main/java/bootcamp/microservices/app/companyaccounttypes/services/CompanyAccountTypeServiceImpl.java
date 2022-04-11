@@ -61,4 +61,9 @@ public class CompanyAccountTypeServiceImpl implements CompanyAccountTypeService 
 		}).switchIfEmpty(Mono.error(new CustomNotFoundException("Client not found")));
 	}
 
+	@Override
+	public Mono<CompanyAccountType> findByShortNameAndStatus(String shortName) {
+		return companyAccountTypeRepository.findByShortNameAndStatus(shortName, Constants.ACTIVE);
+	}
+
 }

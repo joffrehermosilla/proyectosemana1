@@ -18,4 +18,6 @@ public interface CompanyAccountTypeService {
 
 	public Mono<CompanyAccountType> deleteLogic(CompanyAccountType companyAccountType);
 
+	public Mono<CompanyAccountType> findByShortNameAndStatus(String shortName);
+
 }

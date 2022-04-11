@@ -2,18 +2,19 @@ package bootcamp.microservices.app.companyaccounts.services;
 
 import java.util.Date;
 
-import javax.validation.Validation;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import bootcamp.microservices.app.companyaccounts.documents.CompanyAccount;
 import bootcamp.microservices.app.companyaccounts.exceptions.customs.CustomNotFoundException;
 import bootcamp.microservices.app.companyaccounts.repository.CompanyAccountRepository;
+import bootcamp.microservices.app.companyaccounts.utils.Validation;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
+@Transactional
 public class CompanyAccountServiceImpl implements CompanyAccountService {
 
 	@Autowired
@@ -44,7 +45,12 @@ public class CompanyAccountServiceImpl implements CompanyAccountService {
 
 	@Override
 	public Mono<CompanyAccount> save(CompanyAccount companyAccount) {
-		return accountRepository.save(companyAccount);
+		Boolean authorize = validation.createAccountValidation(companyAccount.getIdAccountType());
+		if (authorize == true) {
+			return accountRepository.save(companyAccount);
+		} else {
+			return Mono.error(new CustomNotFoundException("Companies only can open account companies"));
+		}
 	}
 
 	@Override
