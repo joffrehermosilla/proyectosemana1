@@ -46,10 +46,12 @@ public class CompanyAccountServiceImpl implements CompanyAccountService {
 	@Override
 	public Mono<CompanyAccount> save(CompanyAccount companyAccount) {
 		Boolean authorize = validation.createAccountValidation(companyAccount.getIdAccountType());
-		if (authorize == true) {
+		Boolean haveSignatory = validation.signatoryAccountValidatio(companyAccount.getListOfSignatories());
+		if (authorize == true && haveSignatory == true) {
 			return accountRepository.save(companyAccount);
 		} else {
-			return Mono.error(new CustomNotFoundException("Companies only can open account companies"));
+			return Mono.error(new CustomNotFoundException(
+					"Companies only can open account companies and must have almost one signatory"));
 		}
 	}
 

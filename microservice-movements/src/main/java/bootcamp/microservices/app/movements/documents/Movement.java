@@ -11,7 +11,9 @@ import lombok.Data;
 
 @Data
 @Document
-public class Movements implements Serializable {
+public class Movement implements Serializable {
+
+	private static final long serialVersionUID = -7264405121088013360L;
 
 	private String id;
 
@@ -34,5 +36,7 @@ public class Movements implements Serializable {
 	private Date modifyDate;
 
 	private String modifyUser;
+	
+	private Integer status;
 
 }

@@ -27,7 +27,7 @@ public class CompanyAccount implements Serializable {
 	private Double amount;
 	
 	private List<Holder> listOfHolders;
-
+	
 	private List<Signatory> listOfSignatories;
 
 	@JsonFormat(pattern = "dd-MM-yyyy")
