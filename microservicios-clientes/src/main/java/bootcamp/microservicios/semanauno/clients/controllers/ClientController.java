@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,20 +32,43 @@ public class ClientController {
 	private ClientService clientService;
 
 	/*
-	 * @PostMapping("/crear-con-iterable") public ResponseEntity<?>
-	 * crear(@RequestBody Iterable<Client> clients) {
+	 * Un cliente personal solo puede tener un máximo de una cuenta de ahorro, una
+	 * cuenta corriente o cuentas a plazo fijo. • Un cliente empresarial no puede
+	 * tener una cuenta de ahorro o de plazo fijo, pero sí múltiples cuentas
+	 * corrientes
 	 * 
-	 * clients = ((List<Client>) clients).stream().map(r -> {
-	 * r.setCuentaId(r.getCuentaId());
+	 * Los clientes del banco son de dos tipos: personal o empresarial. • El sistema
 	 * 
-	 * return r; }).collect(Collectors.toList());
-	 * 
-	 * Iterable<Client> respuestasDb = clientService.saveAll(clients);
-	 * 
-	 * return ResponseEntity.status(HttpStatus.CREATED).body(respuestasDb);
-	 * 
-	 * }
 	 */
+
+	@PostMapping("/cliente-crea-cuenta")
+	public ResponseEntity<?> crear(@RequestBody Iterable<Client> clients) {
+
+		clients = ((List<Client>) clients).stream().map(r -> {
+
+			/*
+			 * Un cliente personal solo puede tener un máximo de una cuenta de ahorro, una
+			 * cuenta corriente o cuentas a plazo fijo.
+			 */
+
+			if (r.getPasivoId().isEmpty()) {
+				r.setPasivoId(r.getPasivoId());
+				// generacion de relacion distribuida
+			}
+
+			if (!r.getActivoId().isEmpty()) {
+				r.setActivoId(r.getActivoId());
+				// generacion de relacion distribuida
+			}
+
+			return r;
+		}).collect(Collectors.toList());
+
+		Iterable<Client> respuestasDb = clientService.saveAll(clients);
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(respuestasDb);
+
+	}
 
 	/*
 	 * @PostMapping("/crear-con-reactor") public Mono<ResponseEntity<Map<String,
@@ -80,7 +104,7 @@ public class ClientController {
 
 	@GetMapping("/all")
 	public Flux<Client> searchAll() {
-		Flux<Client> cli = clientService.findAll();
+		Flux<Client> cli = (Flux<Client>) clientService.findAll();
 		LOGGER.info("CLIENTES REGISTRADOS: " + cli);
 		return cli;
 	}
@@ -93,8 +117,8 @@ public class ClientController {
 
 	@PostMapping("/crear-cliente")
 	public Mono<Client> createClient(@Valid @RequestBody Client client) {
-		LOGGER.info("CLIENTE creado: " + clientService.save(client));
-		return clientService.save(client);
+		LOGGER.info("CLIENTE creado: " + clientService.saves(client));
+		return clientService.saves(client);
 	}
 
 }

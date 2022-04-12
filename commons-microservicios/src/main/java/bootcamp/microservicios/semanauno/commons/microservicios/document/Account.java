@@ -1,6 +1,5 @@
 package bootcamp.microservicios.semanauno.commons.microservicios.document;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +24,8 @@ public class Account {
 
 	/*
 	 * 
-	 * accountname el nombre de la cuenta : Ahorro, Cuenta corriente y Plazo fijo
-	 * según el enunciado del proyecto
+	 * accountname el nombre de la cuenta : Ahorro [a], Cuenta corriente[cc] y Plazo
+	 * fijo [pf] según el enunciado del proyecto
 	 * 
 	 */
 
@@ -52,19 +51,12 @@ public class Account {
 	@NotNull(message = " comision de mantenimiento segun el enunciado del proyecto no null")
 	private Long monthlymovement;
 
-	
 	@Transient
 	private Client clientporpasivo;
-	
+
 	@JsonIgnoreProperties(value = { "clientes_con_cuenta_pasiva" })
 	private List<Client> pasivosporcliente;
-	
-	
-	
-	
-	
-	
-	
+
 	private Account(AccountBuilder builder) {
 
 		this.id = builder.id;
@@ -74,7 +66,7 @@ public class Account {
 	}
 
 	public Account() {
-		this.pasivosporcliente =new ArrayList<>();
+		this.pasivosporcliente = new ArrayList<>();
 	}
 
 	public static class AccountBuilder {

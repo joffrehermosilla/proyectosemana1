@@ -25,7 +25,25 @@ public class Client {
 
 	private String activoId;
 
-	private String texto;
+	/*
+	 * tipoCliente segun el enunciado [0] Natural [1] Juridico
+	 * 
+	 */
+
+	private Long tipoCliente;
+
+	private String nombreCompleto;
+
+	/*
+	 * Las cuentas bancarias empresariales pueden tener uno o más titulares y cero o
+	 * más firmantes autorizados.
+	 * 
+	 * 
+	 * titular[1] firmante autorizado [0]
+	 * 
+	 */
+	
+	private Long tipodetitular;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createAt;
